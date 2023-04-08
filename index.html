@@ -1,13 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    hello
-  <script src="script.js"></script>  
-</body>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>xmlhttp fun</title>
+    </head>
+    <body>
+        <h>
+            xml htttp request
+        </h>
+        <script>
+            const req= new XMLHttpRequest();
+            req.addEventListener("load",reqfunc);
+            req.open("GET","https://restcountries.com/v3.1/all");
+            req.send();
+
+            function reqfunc()
+            {
+                let country = JSON.parse(this.responseText);
+                country.forEach((e) => {
+                    console.log(e.name.common);
+                    
+                });
+            }
+
+        </script>
+    </body>
 </html>
