@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMLHTTP Req & Functions</title>
+</head>
+<body>
+    <h1>Print name,region,subregion,population from restcountries api</h1>
+
+    <script>
+        
+        const req = new XMLHttpRequest()
+        req.addEventListener("load",reqFun)
+
+        req.open("GET","https://restcountries.com/v3.1/all")
+        req.send()
+
+        function generateName(countryName,region,subregion,population)
+        {
+            console.log( `${countryName}-${region?region[0]:""}-${subregion?subregion[0]:""}-${population}`)
+        }
+        function reqFun(){
+            let country = JSON.parse(this.responseText)
+            console.log(country[0])
+            for(e of country)
+            {
+               generateName(e.name.common,e.region,e.subregion,e.population)
+            }
+
+        }
+
+    </script>
+</body>
+</html>
